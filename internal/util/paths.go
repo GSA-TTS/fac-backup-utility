@@ -20,7 +20,7 @@ func SetPaths(env string) {
 		PGDUMP_path = "pg_dump"
 		PGRESTORE_path = "pg_restore"
 		PSQL_path = "psql"
-	case "DEV":
+	case "DEVELOPMENT":
 		fallthrough
 	case "STAGING":
 		fallthrough

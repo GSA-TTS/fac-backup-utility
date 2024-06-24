@@ -84,7 +84,7 @@ var installAwsCmd = &cobra.Command{
 	Short: "Install AWS-CLI",
 	Long:  `This command will curl the necessary aws-cli package and install it`,
 	Run: func(cmd *cobra.Command, args []string) {
-		if slices.Contains([]string{"DEV", "PREVIEW", "STAGING", "PRODUCTION"}, os.Getenv("ENV")) {
+		if slices.Contains([]string{"DEVELOPMENT", "PREVIEW", "STAGING", "PRODUCTION"}, os.Getenv("ENV")) {
 			InstallAWS()
 		} else {
 			logging.Logger.Printf("ENV set to LOCAL or TESTING, aws-cli is not necessary to install.")

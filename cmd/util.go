@@ -72,7 +72,7 @@ func getBucketCredentials(s3path *structs.S3Path) vcap.Credentials {
 			os.Exit(logging.COULD_NOT_FIND_CREDENTIALS)
 		}
 		return bucket_creds
-	case "DEV":
+	case "DEVELOPMENT":
 		fallthrough
 	case "STAGING":
 		fallthrough

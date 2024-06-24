@@ -133,7 +133,7 @@ var S3toDBCmd = &cobra.Command{
 			bucket_to_local_tables(db_creds, bucket_creds, path_struct)
 			os.Remove("pg_dump_tables")
 			logging.Logger.Println("Finished Restore and cleaning residual files/folders.")
-		case "DEV":
+		case "DEVELOPMENT":
 			fallthrough
 		case "STAGING":
 			fallthrough
