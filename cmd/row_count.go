@@ -23,7 +23,7 @@ var (
 
 type RowCount struct {
 	Table string `json:"Table"`
-	Rows  int    `json:"Rows"`
+	Rows  string `json:"Rows"`
 }
 
 type connection struct {
@@ -76,11 +76,7 @@ func check_rows_in_db(source_creds vcap.Credentials) {
 	for _, joined_tables := range strings.Split(joined_tables, "\n") {
 		if joined_tables != "" {
 			s := strings.Split(joined_tables, " ")
-			rows_as_int, err := strconv.Atoi(s[1])
-			if err != nil {
-				rows_as_int = -1
-			}
-			rows = append(rows, &RowCount{Table: s[0], Rows: rows_as_int})
+			rows = append(rows, &RowCount{Table: s[0], Rows: s[1]})
 		}
 	}
 
