@@ -45,7 +45,6 @@ django_session
 support_adminapievent
 support_administrative_key_uuids
 support_cognizantassignment
-support_cognizantbaseline
 users_permission
 users_staffuser
 users_staffuserlog
