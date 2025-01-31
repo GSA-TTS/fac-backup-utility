@@ -38,6 +38,8 @@ func runLocalOrRemote(funs structs.Choice) {
 		fallthrough
 	case environments.TESTING:
 		funs.Local()
+	case environments.SANDBOX:
+		fallthrough
 	case environments.DEVELOPMENT:
 		fallthrough
 	case environments.PREVIEW:
@@ -73,6 +75,8 @@ func getBucketCredentials(s3path *structs.S3Path) vcap.Credentials {
 			os.Exit(logging.COULD_NOT_FIND_CREDENTIALS)
 		}
 		return bucket_creds
+	case environments.SANDBOX:
+		fallthrough
 	case environments.DEVELOPMENT:
 		fallthrough
 	case environments.PREVIEW:
