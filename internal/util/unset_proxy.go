@@ -9,7 +9,7 @@ import (
 )
 
 func UnsetProxy() {
-	if slices.Contains([]string{environments.DEVELOPMENT, environments.PREVIEW, environments.STAGING, environments.PRODUCTION}, os.Getenv("ENV")) {
+	if slices.Contains([]string{environments.SANDBOX, environments.DEVELOPMENT, environments.PREVIEW, environments.STAGING, environments.PRODUCTION}, os.Getenv("ENV")) {
 		if IsDebugLevel("DEBUG") {
 			logging.Logger.Println("Proxy:", os.Getenv("https_proxy"))
 		}
