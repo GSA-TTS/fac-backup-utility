@@ -12,15 +12,9 @@ go run main.go
 ./build.sh
 ```
 
-## Usage: clone
-
-```
-gov.gsa.fac.cgov-util clone --source-db <name> --destination-db <name>
-```
-
 This command clones one DB to another by piping STDOUT from `pg_dump` into the STDIN of `psql`, with the correct connection/credential parameters for each command.
 
-When run localling (assuming `ENV` is set to `LOCAL`) it will read a `config.json` from the directory `$HOME/.fac/config.json` (or, from `config.json` in the same folder as the application). This file should look like a `VCAP_SERVICES` variable that would be encountered in the Cloud Foundry/cloud.gov environment.
+When running locally (assuming `ENV` is set to `LOCAL`) it will read a `config.json` from the directory `$HOME/.fac/config.json` (or, from `config.json` in the same folder as the application). This file should look like a `VCAP_SERVICES` variable that would be encountered in the Cloud Foundry/cloud.gov environment.
 
 When run in the cloud.gov environment (where `ENV` is anything other than `LOCAL` or `TESTING`), it will look at `$VCAP_SERVICES`, look in the `aws-rds` key, and look up the DB credentials by the friendly name provided on the command line. By this, if your brokered DB is called `fac-db`, this will then populate the credentials (internally) with the brokered DB name, password, URI, etc. in order to correctly `pg_dump` from one and, using another set of credentials, stream the data into another.
 

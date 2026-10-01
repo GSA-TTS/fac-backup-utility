@@ -14,6 +14,13 @@ func PG_Dump_Table(creds vcap.Credentials,
 	schema string,
 	table string,
 	format string) *script.Pipe {
+
+	// Backup from replica if it exists
+	uri := creds.Get("uri")
+	if replicaUri := creds.Get("replica_uri"); replicaUri.Exists() {
+		uri = replicaUri
+	}
+
 	// Compose the command as a slice
 	cmd := []string{
 		util.PGDUMP_path,
@@ -24,13 +31,7 @@ func PG_Dump_Table(creds vcap.Credentials,
 		"--table",
 		fmt.Sprintf("%s.%s", schema, table),
 		"--dbname",
-		fmt.Sprintf("postgres://%s:%s@%s:%s/%s",
-			creds.Get("username").String(),
-			creds.Get("password").String(),
-			creds.Get("host").String(),
-			creds.Get("port").String(),
-			creds.Get("db_name").String(),
-		),
+		fmt.Sprintf(uri.String()),
 	}
 	// Combine the slice for printing and execution.
 	combined := strings.Join(cmd[:], " ")
