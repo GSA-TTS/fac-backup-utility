@@ -108,7 +108,7 @@ func tables_to_cgov_bucket(
 			)
 			s3_pipe.Wait()
 			if err := s3_pipe.Error(); err != nil {
-				logging.Logger.Println("DBTOS3 `dump | s3` pipe failed")
+				logging.Logger.Printf("DBTOS3 `dump | s3` pipe failed for %s.%s: %v", schema, table, err)
 				os.Exit(logging.PIPE_FAILURE)
 			}
 		}

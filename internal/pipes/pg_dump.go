@@ -2,6 +2,7 @@ package pipes
 
 import (
 	"fmt"
+	"os"
 	"strings"
 
 	"github.com/bitfield/script"
@@ -39,5 +40,5 @@ func PG_Dump_Table(creds vcap.Credentials,
 	if util.IsDebugLevel("DEBUG") {
 		fmt.Printf("command: %s\n", combined)
 	}
-	return script.Exec(combined)
+	return script.Exec(combined).WithStderr(os.Stderr)
 }
